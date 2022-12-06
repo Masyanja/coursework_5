@@ -1,6 +1,12 @@
-FROM python:3.8.5
+FROM python:3.9
 
-WORKDIR /code
+
+ENV HOME /app
+WORKDIR $HOME
+
 COPY requirements.txt .
-RUN pip install -r requirements.txt
+RUN python3 -m pip install --no-cache -r requirements.txt
+
 COPY . .
+
+ENTRYPOINT ["sh", "entrypoint.sh"]

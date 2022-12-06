@@ -2,9 +2,11 @@ from flask import render_template, Flask, request, redirect, url_for
 
 from base import Arena
 from classes import unit_classes
+
 from equipment import Equipment
 
 from unit import BaseUnit, PlayerUnit, EnemyUnit
+
 
 app = Flask(__name__)
 
@@ -139,6 +141,6 @@ def choose_enemy():
         heroes['enemy'] = enemy
         return redirect(url_for('start_fight'))
 
+    if __name__ == "__main__":
 
-if __name__ == "__main__":
-    app.run()
+        app.run()
