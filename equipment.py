@@ -49,7 +49,7 @@ class Equipment:
 
     def get_armor(self, armor_name) -> Optional[Armor]:
         # TODO возвращает объект брони по имени
-        for armor in self.equipment.weapons:
+        for armor in self.equipment.armors:
             if armor.name == armor_name:
                 return armor
         return None
@@ -71,9 +71,8 @@ class Equipment:
     @staticmethod
     def _get_equipment_data() -> EquipmentData:
         # TODO этот метод загружает json в переменную EquipmentData
-        equipment_file = open("./data/equipment.json")
-        data = json.load(equipment_file)
-        equipment_file.close()
+        with open("./data/equipment.json", encoding='utf-8') as equipment_file:
+            data = json.load(equipment_file)
         equipment_schema = marshmallow_dataclass.class_schema(EquipmentData)
         try:
             return equipment_schema().load(data)
